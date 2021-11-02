@@ -222,11 +222,11 @@ DTA is currently working with Microsoft and the Department of Finance to simplif
 
 The following image shows the high-level mail flow for agencies implementing without on-premises infrastructure.
 
-![Mail Flow for a cloud native implementation](/assets/images/o365-mail-flow.png)
+![Mail Flow for a cloud native implementation](../assets/images/o365-mail-flow.png)
 
 The figure below shows the high-level mail flow for agencies leveraging on-premises infrastructure in a hybrid configuration. 
 
-![Mail flow for a hybrid implementation](/assets/images/o365-mail-flow-hybrid.png)
+![Mail flow for a hybrid implementation](../assets/images/o365-mail-flow-hybrid.png)
 
 Design Decisions summary for all agencies and implementation types.
 
@@ -1143,7 +1143,7 @@ Telstra Calling for Office 365 avoids the complexity of separate collaboration s
 
 The following image describes how connectivity is achieved between Microsoft Teams and Telstra.
 
-![Telstra Calling for Office 365](/assets/images/o365-voice.png)
+![Telstra Calling for Office 365](../assets/images/o365-voice.png)
 
 Voice Calling Design Decisions for all agencies and implementation types.
 
@@ -1169,7 +1169,7 @@ Power Apps and Power Automate is built with an underlying connector that allows 
 
 The following image shows consideration required for authentication process and requirements for each generalised group of connectors. The cloud services connector is required to be registered in Azure platform before it can be consumed in Power App and Power Automate. On-premises data access requires a service account for network access and a database service account access for Power Apps and Power Automate to consume its data.
 
-![Power Apps and Power Automate authentication flow](/assets/images/o365-power-authentication.png)
+![Power Apps and Power Automate authentication flow](../assets/images/o365-power-authentication.png)
 
 Power Apps and Power Automate Design Decisions for all agencies and implementation types.
 

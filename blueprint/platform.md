@@ -407,7 +407,7 @@ As only one AAD Connect instance can be actively synchronising at a time, high a
 
 The following illustrates the user identity synchronisation between the Agency's on-premises AD to Azure AD.
 
-![AD Connect Identity Synchronisation](/assets/images/platform-ad-connect-id-sync.png)
+![AD Connect Identity Synchronisation](../assets/images/platform-ad-connect-id-sync.png)
 
 Within the AAD Connect client the synchronisation process can be customised in several ways including:
 
@@ -422,7 +422,7 @@ When AAD Connect is leveraged, a user would be created within the on-premises di
 
 The following illustrates a typical user account provisioning workflow for a hybrid configuration.
 
-![User Provisioning Workflow](/assets/images/platform-user-provisioning-workflow.png)
+![User Provisioning Workflow](../assets/images/platform-user-provisioning-workflow.png)
 
 Firewall rules will be implemented for AAD Connect. Further details on firewall configuration can be found in the Network Configuration ABAC.
 
@@ -469,7 +469,7 @@ In a hybrid scenario, authentication support is required outside the corporate n
 
 The following illustrates the pass-through authentication method and how it communicates across the network.
 
-![Authentication Architecture](/assets/images/platform-authentication-architecture.png)
+![Authentication Architecture](../assets/images/platform-authentication-architecture.png)
 
 The following table describes the ports and protocols used in a hybrid configuration between on the PTA Agent and Azure AD. The hardware requirements for PTA agents are available in Appendix 1: AAD Connect and PTA agent hardware requirements.
 
@@ -509,7 +509,7 @@ The architecture of MCAS includes several integrated components to address each 
 
 An overview of these components and how they combine in MCAS is illustrated below in Figure 5. Figure reproduced from [https://docs.microsoft.com/en-us/cloud-app-security/what-is-cloud-app-security#architecture](https://docs.microsoft.com/en-us/cloud-app-security/what-is-cloud-app-security#architecture)
 
-![Figure 5 - MCAS Architecture](/assets/images/platform-product-architecture.png)
+![Figure 5 - MCAS Architecture](../assets/images/platform-product-architecture.png)
 
 Further details including configuration of each of these components is presented later in this document.
 
@@ -592,7 +592,7 @@ Defender for Endpoint integration enables cloud app and service traffic to be se
 
 This capability is enabled from within the Endpoints > Advanced Features settings within the Microsoft 365 Defender portal, as shown below in Figure 6. Figure reproduced from [https://docs.microsoft.com/en-au/cloud-app-security/mde-integration](https://docs.microsoft.com/en-au/cloud-app-security/mde-integration)
 
-![Figure 6 - Defender for Endpoint and MCAS Integration](/assets/images/platform-defender-mcas.png)
+![Figure 6 - Defender for Endpoint and MCAS Integration](../assets/images/platform-defender-mcas.png)
 
 Important Note: Microsoft Defender for Endpoint should be configured prior to enabling this feature. 
 
@@ -971,7 +971,7 @@ The Defender for Identity architecture is composed of a Defender for Identity cl
 
 A high-level illustration of Defender for Identity architecture is shown below in Figure 7. Figure reproduced from [https://docs.microsoft.com/en-au/defender-for-identity/prerequisites](https://docs.microsoft.com/en-au/defender-for-identity/prerequisites)
 
-![Figure 7 - Microsoft Defender for Identity Architecture](/assets/images/platform-defender-for-identity.png)
+![Figure 7 - Microsoft Defender for Identity Architecture](../assets/images/platform-defender-for-identity.png)
 
 A single Defender for Identity instance can monitor multiple AD DS forests and their respective domains.
 
@@ -1295,7 +1295,7 @@ Intune also provides a patching mechanism which simplifies the deployment of Mic
 
 The following figure provides an overview of co-management. Figure reproduced from https://docs.microsoft.com/en-us/mem/configmgr/comanage/overview
 
-![Co-management overview](/assets/images/platform-intune-comgmt.png)
+![Co-management overview](../assets/images/platform-intune-comgmt.png)
 
 Intune Co-Management design considerations and decisions apply to the HYBRID solution.
 
@@ -1328,7 +1328,7 @@ Windows Autopilot provides the ability to:
 * Restrict the Administrator – Restrict administrator account creation.
 * Create and auto-assign devices – Auto assign to configuration groups based on a device's profile.
 
-![Autopilot Deployment](/assets/images/platform-autopilot.png)
+![Autopilot Deployment](../assets/images/platform-autopilot.png)
 
 Intune Windows AutoPilot Design Decisions for cloud native implementations
 
