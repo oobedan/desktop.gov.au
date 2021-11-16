@@ -44,14 +44,17 @@ You can find published releases at [https://github.com/govau/desktop.gov.au/rele
   * Improvement to iOS device enrollment and application delivery
   * Removal of conflicting guidance around Office security and macro setting (Trusted location removed to align with Client Devices design update)
   * Updated Intune configuration to include a method to block web browsers and Outlook for administrators [#81]
+  * Add Ease of Use section [#141]
 * Office 365 ABAC uplift [#124]
   * 2018.4 PSPF updates
   * Added Global Settings for Safe Links
+  * Updated Exchange policies [#140]
 * Consolidated duplicate As-Built-As-Configured content for a better user experience [#109]
 * Add ability to disable inactive user accounts as per Essential Eight July update [#111]
-* Updated detail for PSPF labelling limitations [#114]
-* Provide an automation for deploying sensitivity labels using M365DSC [#117]
-* Incorporated updated ACSC references: Apple iOS 14 Devices (Oct 2021), Essential Eight (Oct 2021), Microsoft Office Hardening (Oct 2021) and Windows Hardening (Oct 2021) [#125]
+* Updated detail for PSPF labelling limitations [#114] [#138]
+* Updated sensitivity labels [#130] and provide an automated method for deploying sensitivity labels using M365DSC [#117]
+* Updated and expanded Identity and Access Management DSC script to include group settings and tenant contacts [#137]
+* Incorporated updated ACSC references: Apple iOS 14 Devices (Oct 2021), Essential Eight (Oct 2021), Microsoft Office Hardening (Oct 2021) and Windows Hardening (Oct 2021) [#125] [#139]
 
 Other general website changes:
 

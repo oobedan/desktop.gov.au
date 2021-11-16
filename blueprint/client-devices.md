@@ -873,6 +873,18 @@ Network settings – Download | Do not limit | Allow dynamic network configurati
 File Collaboration Policy | Enabled | File collaboration will be enabled to allow users to work collaboratively and increase productivity. 
 Sync Conflict Policy | Let me choose to merge changes or keep copies | The OneDrive sync conflict policy will be configured to allow the user to choose. 
 
+### Ease of Access
+
+Where required, accessibility features can be configured to accommodate user needs by IT support staff.
+
+Ease of Access Design Decisions for all agencies and implementation types.
+
+Decision Point | Design Decision | Justification
+--- | --- | ---
+Vision accessibility features	| Default setting are enabled:<br>Display<br>Mouse pointer<br>Text cursor<br>Magnifier<br>Color filters<br>High contrast<br>Narrator | To aid in accessibility and does not conflict with ACSC hardening recommendations.
+Hearing accessibility features	| Default setting are enabled:<br>Audio<br>Closed captions | To aid in accessibility and does not conflict with ACSC hardening recommendations.
+Interaction accessibility features	| Default setting are enabled:<br>Speech<br>Keyboard<br>Mouse<br>Eye control | To aid in accessibility and does not conflict with ACSC hardening recommendations.
+
 ## Windows 10 security
 
 Security settings are applied to the SOE largely to slow down and prevent malicious adversaries and payloads from causing harm to an Agency. The security settings should not prevent legitimate users from conducting work and should provide them with the correct amount of access to the environment to allow them to operate without impeding the work.
@@ -889,7 +901,7 @@ The following details the Microsoft Defender capabilities:
 * Microsoft Defender Exploit Guard – Provides Host-based Intrusion Protection System (HIPS) capabilities and replaces the Microsoft Enhanced Mitigation Experience Toolkit (EMET).
 * Microsoft Defender Application Guard – Provides hardware isolation of Microsoft Edge to protect against malicious websites. Protection is provided through the use of Hyper-V enabled containers isolated from the host operating system for opening untrusted websites.
 * Microsoft Defender Credential Guard – Provides virtualisation-based security to isolate credentials to protect against identity theft attacks. Much like Device Guard, Credential Guard uses Virtual Secure Mode (VSM) to isolate processes, in this case the Local Security Authority (LSA). The LSA performs various security operations, including the storage and management of user and system credentials. Unauthorised access to the LSA can lead to credential theft attacks, such as Pass-the-Hash or Pass-The-Ticket.
-* Microsoft Defender Remote Credential Guard – Provides protection of credentials used over a Remote Desktop connection by redirecting the Kerberos authentication request back to the device requesting the remote connection. Remote Credential Guard cannot be used when connecting
+* Microsoft Defender Remote Credential Guard – Provides protection of credentials used over a Remote Desktop connection by redirecting the Kerberos authentication request back to the device requesting the remote connection. Remote Credential Guard cannot be used when connecting to remote desktops that are are not joined to the same Active Directory Domain Services domain as the client, or where there is no trust relationship between the client device and the remote desktop.
 * Microsoft Defender Firewall – Provides stateful packet inspection and blocking of network traffic. Windows Defender Firewall blocks unauthorized network traffic flowing into and out of the client endpoint reducing the attack surface of the device.
 * Microsoft Defender SmartScreen – Provides malware and phishing website protection including downloaded files. SmartScreen protects users by performing the following.
   * Analysing webpages for signs of distrustful behaviour and shows a warning page if it identifies suspicious activity.
@@ -909,7 +921,7 @@ Microsoft Defender Design Decisions for all agencies and implementation types.
 Decision Point | Design Decision | Justification
 --- | --- | ---
 Microsoft Defender | Enabled | Microsoft Defender will be enabled to align with ACSC guidance. 
-Microsoft Defender Capabilities Enabled in the SOE | Components:<br>Microsoft Defender Antivirus<br>Microsoft Defender Exploit Guard<br>Microsoft Defender Application Control<br>Microsoft Defender SmartScreen<br>Microsoft Defender Application Guard<br>Microsoft Defender Credential Guard<br>Microsoft Defender Firewall | Provides required security controls for the SOE. 
+Microsoft Defender Capabilities Enabled in the SOE | Components:<br>Microsoft Defender Antivirus<br>Microsoft Defender Exploit Guard<br>Microsoft Defender Application Control<br>Microsoft Defender SmartScreen<br>Microsoft Defender Application Guard<br>Microsoft Defender Credential Guard<br>Microsoft Defender Remote Credential Guard (hybrid only)<br>Microsoft Defender Firewall | Provides required security controls for the SOE. 
 Microsoft Defender Antivirus Exclusions | Enabled and configured | To align with the ACSC Windows 10 hardening guidance. 
 Microsoft Defender Exploit Guard Configuration | Enabled and configured | To align with the ACSC Windows 10 hardening guidance. 
 Microsoft Defender Application Control Configuration | Enabled and configured | To align with the ACSC Windows 10 hardening guidance. 

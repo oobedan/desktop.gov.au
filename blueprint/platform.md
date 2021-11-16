@@ -36,12 +36,12 @@ Client Configuration | Intune<br>Microsoft Co-Management<br>Group Policy<br>Prin
 Backup | Microsoft 365 Backup
 System Administration | Administrative Consoles<br>Role bases Access Control
 
-### Microsoft 365 design
+### Office 365 design
 
 Component | Inclusions
 --- | ---
-Microsoft 365 Organisation | Residency<br>License<br>Self Service Purchase<br>Themes<br>Office 365 Services and Add-Ins<br>Role Based Access Control<br>Customer Lockbox
-Microsoft 365 Connectivity | Mail Flow and Gateway<br>Optimisation<br>Exchange Hybrid<br>Mail Exchange Records<br>Mail Connectors<br>Autodiscover<br>SPF, DMARC, DKIM<br>Accepted Domains<br>Remote Domains<br>Certificates
+Office 365 Organisation | Residency<br>License<br>Self Service Purchase<br>Themes<br>Office 365 Services and Add-Ins<br>Role Based Access Control<br>Customer Lockbox
+Office 365 Connectivity | Mail Flow and Gateway<br>Optimisation<br>Exchange Hybrid<br>Mail Exchange Records<br>Mail Connectors<br>Autodiscover<br>SPF, DMARC, DKIM<br>Accepted Domains<br>Remote Domains<br>Certificates
 Exchange Online | Mail Migration<br>User Mailbox Configuration<br>Authentication Policies<br>Outlook on the Web Policies<br>Mailbox Archive<br>Journaling<br>Litigation Hold<br>Shared Mailboxes<br>Resource Mailboxes<br>Distribution Lists<br>Microsoft 365 groups<br>Address Book / Address List
 SharePoint Online | SharePoint Sites<br>SharePoint Hybrid<br>Application Management<br>Web Parts<br>Sharing and Access Controls<br>Legacy Features
 OneDrive for Business | Sharing<br>Storage and Synchronisation<br>Notifications<br>Content Migration
@@ -63,7 +63,7 @@ iOS | Enrolment<br>Security<br>Remote Wipe
 
 ## Assumptions
 
-* Azure AD Multi-Factor Authentication (MFA) natively supports the Open Authentication (OATH) standard for selected hardware tokens. To use Azure MFA with OATH support, and to achieve an Essential 8 Maturity level of 3, use tokens that are "verifier impersonation resistant" and uses either: something users have and something users know, or something users have that is unlocked by something users know or are. This blueprint and associated security documentation assume the use of soft tokens (with Microsoft Authenticator) and a level 2 maturity in this aspect of the Essential 8. 
+* Azure AD Multi-Factor Authentication (MFA) natively supports the Open Authentication (OATH) standard for selected hardware tokens. To use Azure MFA with OATH support, and to achieve an Essential Eight maturity level of 3, use tokens that are "verifier impersonation resistant" and uses either: something users have and something users know, or something users have that is unlocked by something users know or are. This blueprint and associated security documentation assume the use of soft tokens (with Microsoft Authenticator) and a level 2 maturity for MFA. 
 * Microsoft 365 and Microsoft Azure solutions hold audit data for a period based on the service and the license level of the organisation. The time for most services is under 2 years. For organisations with a requirement to hold audit data past this period, Security Information and Event Management (SIEM) integration should be considered. Service audit data within the Microsoft 365 and Azure clouds is often housed in discrete systems and the opportunities to bring the data under a single pane is limited. Azure Monitor or Azure Sentinel are two Microsoft offerings which could be leveraged for this purpose however a holistic solution should be considered to ensure any legislative requirements are met.
 * The blueprint has been designed to cater for government organisations allowing end user devices internet access from anywhere (head office, regional office or home) direct connected and via proxy servers, VPN servers or Security Internet Gateways (SIGs). Where connected through a proxy server, rules will be configured to allow direct connection for some Microsoft 365 services. Mobile users will access Microsoft 365 services directly. These users will be subject to Conditional Access policies to reduce unauthorised access risk.
 * The Intune Console is the preferred method to manage all settings regardless of Cloud native or Hybrid. Although a combination of the Microsoft Endpoint Configuration Manager (MECM) Console and Group Policy Objects (GPOs) would be able to achieve the same settings in a hybrid environment, this blueprint does not include MECM and GPOs example configurations due to the level of dissimilarities and per agency customisation in existing MECM and GPOs configurations across Commonwealth entities.
@@ -99,7 +99,7 @@ Decision Point | Design Decision | Justification
 --- | --- | ---
 Cloud Based Service Accounts | Configured | Break glass accounts are required to be cloud based to ensure access to the tenant if there are issues with authentication.
 Allow the registration of applications by users | Disabled | Only administrators can register applications.
-Allow self-service sign-up form email verified users | Disabled | Only administrators can create user accounts. 
+Allow self-service sign-up for email verified users | Disabled | Only administrators can create user accounts. 
 Restrict access to the Azure AD administrative portal | Enabled | Only administrators have access to the portal.
 Allow LinkedIn connections | Disabled | To meet the Agency's requirements not to share information with third party Agencies without approval.
 External Collaboration | Configured | As required by the Agency, provided the external Agencies are at the same classification.
@@ -127,7 +127,7 @@ Additional Azure AD Design Decisions for hybrid implementations.
 
 Decision Point | Design Decision | Justification
 --- | --- | ---
-Identity Source | Windows Server Active Directory (AD) Domain Services (DS) | As this is a hybrid implementation, Active Directory will be the source of identity. 
+Identity Source | Windows Server Active Directory Domain Services (AD DS) | As this is a hybrid implementation, Active Directory will be the source of identity. 
 Synchronize to Active Directory | Configured | Cloud identities or Synchronised or Federated in accordance with agency specific requirements.
 Azure AD Connect | Configured | See Azure AD Connect section for details.
 Identity Format | Inherited | Usernames will be synchronised from the on-premises Active Directory and will inherit naming convention.
@@ -243,14 +243,14 @@ Azure MFA provides multiple verification methods, such as:
 * Text message to phone – Sends a text message that contains a verification code that is used as the authentication token. The user is prompted to enter the verification code into the sign-in interface. This process is called one-way SMS.
 * OAuth hardware token verification code – OATH is an open standard that specifies how one-time password (OTP) codes are generated. Various vendor tokens are supported.
 
-Azure MFA integrates with Azure AD Conditional Access polices, or the Trusted IP ranges feature to determine under what circumstances and user's physical location a challenge for additional authentication is required . Conditional Access polices are the recommended method to determine MFA conditions.
+Azure MFA integrates with Azure AD Conditional Access policies, or the Trusted IP ranges feature to determine under what circumstances and user's physical location a challenge for additional authentication is required . Conditional Access policies are the recommended method to determine MFA conditions.
 
 Azure AD Multifactor Authentication Design Decisions for all agencies and implementation types.
 
 Decision Point | Design Decision | Justification
 --- | --- | ---
 MFA | Configured – Mobile App – soft token code | Native Azure MFA will be configured to secure access to applications and desktops from outside of the environment, and any system administration functions. Use of a mobile app for verification instead of SMS message or phone call reduces any possibility of hack by cloning or swapping a sim card.<br> The ACSC recommends implementing soft tokens without push notifications.
-Hardware Token Support | Allowed (supported OATH tokens only)  | The default method will be to use soft tokens which will meet maturity level 2 of the Essential 8, although hardware tokens will be allowed. Hardware token support is required to support some use cases. Some working locations may not allow mobile phones, or users may have a specific physical token, biometrics or smartcard justification. Having tokens that are "verifier impersonation resistant" is a requirement to achieve Essential 8, level 3 maturity for multifactor authentication. 
+Hardware Token Support | Allowed (supported OATH tokens only)  | The default method will be to use soft tokens which will meet maturity level 2 of the Essential Eight, although hardware tokens will be allowed. Hardware token support is required to support some use cases. Some working locations may not allow mobile phones, or users may have a specific physical token, biometrics or smartcard justification. Having tokens that are "verifier impersonation resistant" is a requirement to achieve Essential Eight maturity level 3 for MFA. 
 Trusted IP | Not configured | Conditional Access policies will be used in place of the legacy 'Trusted IP' feature. Trusted egress IP addresses (if required) will be defined by Conditional Access. 
 MFA for Administration | Configured | Administration through the Azure Portal and other Cloud Apps will require MFA.
 MFA for User Apps | Configured | MFA is required.
@@ -282,15 +282,16 @@ Conditional Access Policy Design Decisions for all agencies and implementation t
 
 Configuration | Description
 --- | ---
-BLOCK - Legacy Authentication | This global policy blocks all connections from insecure legacy protocols like ActiveSync, IMAP, POP3, etc.
-BLOCK - High-Risk Sign-Ins | This global policy blocks all high-risk authentications (requires Azure AD Premium P2).
 BLOCK - Countries not Allowed | This global policy blocks all connections from countries not in the Allowed countries list.
-GRANT - Terms of Use | This global policy forces Terms of Use on all authentications. Terms of Use is a one-off acceptance, it is used for users to accept their security responsibilities before access is granted. 
+BLOCK - Guest Access | Deny all guest and external users by default.
+BLOCK - High-Risk Sign-Ins | This global policy blocks all high-risk authentications (requires Azure AD Premium P2).
+BLOCK - Legacy Authentication | This global policy blocks all connections from insecure legacy protocols like ActiveSync, IMAP, POP3, etc.
+BLOCK - Unapproved Devices | Prevents access from device types not included in the blueprint (Android, Windows Phone and macOS)
+GRANT - Guest Access | Approved apps that guest users can access (requires MFA).
 GRANT - Intune Enrolment | Devices can authenticate to Intune for enrolment.
 GRANT - iOS Device Access | Grants access to managed iOS devices that are enrolled and compliant in Intune. An approved Microsoft app is required on iOS. 
+GRANT - Terms of Use | This global policy forces Terms of Use on all authentications. Terms of Use is a one-off acceptance, it is used for users to accept their security responsibilities before access is granted. 
 GRANT - Windows Device Access | Grants access to managed Windows devices that are Intune enrolled and/or Hybrid Azure AD Joined (joined to an on-premises AD and Azure AD). Note, Hybrid Azure AD join only applies to Hybrid implementation types. 
-GRANT - Guest Access (B2B) | Approved apps that guest users can access (requires MFA).
-BLOCK - Guest Access (B2B) | Blocked apps that guest users can never access.
 SESSION - Admin Sign-in Frequency | Enforces a sign-in frequency to ensure administrators sessions do not remain active when keep me signed In (KMSI) is enabled on the tenant. 
 
 ###  Active Directory
@@ -435,8 +436,8 @@ Attribute used for login | User ID | This attribute is commonly used for logins 
 Organisational unit filtering | Configured | To target only the required identities for synchronisation. Whole directory synchronisations are not recommended.
 Single Sign On | Configured | Single Sign-on.
 Staging Server | Configured | Best practice dictates a secondary staging server be in place to be used in disaster recovery scenarios.
-Password writeback | Not Configured | Password writeback is not recommended by the ACSC.
-Self Service Password Reset | Not configured | The Self-Service Password Reset feature requires activation of password writeback in the AAD Connect configuration which is not recommended by the ACSC. Thus, this feature is not configured.
+Password writeback | Agency decision | Password writeback enables additional capabilities such as [Leaked Password Detection](https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/concept-identity-protection-risks#password-hash-synchronization), however, it requires hashed passwords to be synchronised from on-premises AD DS to Azure AD.
+Self Service Password Reset | Agency decision | The Self-Service Password Reset feature requires activation of password writeback in the AAD Connect configuration.
 Azure AD App and attribute filtering | Configured | All Azure AD App and attribute filtering will be synchronised as recommended by Microsoft .
 Exchange Hybrid | Configured | Exchange will be used in a hybrid configuration with Exchange Online, therefore this setting is required to be set as Configured.
 Exchange Mail Public Folders | Not Configured | The Agency does not leverage Public folders currently, therefore this setting is not required.
@@ -967,7 +968,7 @@ The Defender for Identity architecture is composed of a Defender for Identity cl
 
 * Defender for Identity cloud service – Is hosted on Azure infrastructure and at time of writing Defender for Identity cloud service is deployed in the US, Europe, and Asia data centres.
 * Defender for Identity portal – Management interface where the Defender for Identity instance can be created, displays data collected by Defender for Identity sensors and is the central console for monitoring, managing and investigating threats.
-* Defender for Identity sensor – Sensors are installed on all domain controllers which monitor and collect domain controller traffic that is feed back to the Defender for Identity portal for analysis.
+* Defender for Identity sensor – Sensors are installed on all domain controllers which monitor and collect domain controller traffic that is fed back to the Defender for Identity portal for analysis.
 
 A high-level illustration of Defender for Identity architecture is shown below in Figure 7. Figure reproduced from [https://docs.microsoft.com/en-au/defender-for-identity/prerequisites](https://docs.microsoft.com/en-au/defender-for-identity/prerequisites)
 
@@ -1099,7 +1100,7 @@ Data storage location | US | As of June 2019, the available Azure data centres t
 Data Retention Period | 180 Days | Default configuration and suitable for the organisation's requirements.
 Alert Notifications | Send Information, Low, Medium, High to Security team. | Alerts will be sent to agency's Cyber Intelligence team for action.
 Microsoft Secure Score integration | Enabled | Forwards data from Defender for Endpoint to Secure Score to provide visibility into device security posture. 
-Administration Roles | Full Administrator:<br>Admin_{agency}-securityadmin | Administrative roles will be segregated as per the ACSC Restricting Administrative Privileges (April 2019) guide.
+Administration Roles | Full Administrator:<br>Admin_{agency}-securityadmin | Administrative roles will be segregated as per the ACSC's [Restricting Administrative Privileges](https://www.cyber.gov.au/acsc/view-all-content/publications/restricting-administrative-privileges) guidance.
 Machine Groups | All Clients | Machines will be segregated into groups with automated remediation levels assigned the administrators that monitor these groups. Groups will be developed with the Agency and documented in the As-Built-As-Configured documentation.
 Machine onboarding and Configuration | Configured | Onboarding and configuration will be performed by Intune.
 SIEM Integration | Configured | To meet the security logging requirements of this solution.
@@ -1203,7 +1204,7 @@ Intune is a component of EMS and integrates with other EMS components such as Az
 
 To complement this visibility, an Intune Data Warehouse can be deployed to capture and create custom reports from Intune data using a reporting service. This can assist in gaining insight into which users are using Intune, what licences are being used, operating system and device breakdowns, and compliance trends. The Data Warehouse also has the capability to export directly to Power BI and create interactive & dynamic reports.
 
-Intune can also configure Windows Information Protection (WIP) polices. WIP can be deployed to:
+Intune can also configure Windows Information Protection (WIP) policies. WIP can be deployed to:
 
 * Protect against potential data leakage – WIP protects against potential data leakage without any impact to user functionality.
 * Protect enterprise applications and data - WIP protects against accidental data leakage on enterprise-owned and personal devices. This can occur without changes to the corporate environment or applications.
@@ -1395,7 +1396,7 @@ Additional Device Configuration Design Decisions for cloud native implementation
 
 Decision Point | Design Decision | Justification
 --- | --- | ---
-Windows 10 and later polices | Configured | Intune policies are applied easing management.
+Windows 10 and later policies | Configured | Intune policies are applied easing management.
 
 Additional Device Configuration Design Decisions for hybrid implementations
 
